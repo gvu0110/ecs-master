@@ -1,0 +1,38 @@
+{
+    "taskRoleArn": "arn:aws:iam::157117204602:role/ecsTaskRole",
+    "executionRoleArn": "arn:aws:iam::157117204602:role/ecsTaskExecutionRole",
+    "containerDefinitions": [
+      {
+        "environment": [
+          {
+            "name": "METAL_HOST",
+            "value": "172.16.0.62:9001"
+          },
+          {
+            "name": "POP_HOST",
+            "value": "172.16.0.144:9002"
+          },
+          {
+            "name": "PORT",
+            "value": "9000"
+          }
+        ],
+        "memoryReservation": 128,
+        "image": "gkoenig/jukeboxapp:latest",
+        "essential": true,
+        "portMappings": [
+          {
+            "hostPort": 0,
+            "protocol": "tcp",
+            "containerPort": 9000
+          }
+        ],
+        "name": "jukebox"
+      }
+    ],
+    "family": "td-jukebox",
+    "requiresCompatibilities": [
+      "EC2"
+    ],
+    "networkMode": "bridge"
+  }
